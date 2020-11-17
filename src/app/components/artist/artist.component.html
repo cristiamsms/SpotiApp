@@ -1,0 +1,61 @@
+<app-loading *ngIf="loading"></app-loading>
+
+
+<div class="row animated fadeIn" *ngIf="!loading">
+
+    <div class="col-2">
+        <img [src]="artista.images | noImage" alt="" class="img-thumbnail img-circle">
+    </div>
+    <div class="col"> 
+        <h3>{{artista.name}} 
+            <p>
+                <a [href]="artista.external_urls.spotify" target="_blank">
+                    Ir a la pagina del artista
+                </a>
+            </p>
+        </h3>
+    </div>
+    <div class="col-4 text-right">
+
+        <button routerLink="/search" class="btn btn-outline-danger"> Regresar</button>
+
+    </div>
+
+
+</div>
+
+<div class="row m-5" >
+    <div class="col">
+
+        <table class="table colorne">
+            <thead>
+                <tr>
+                    <th >Foto</th>
+                    <th>Album</th>
+                    <th>Cancion</th>
+                    <th>Vista Previa</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor="let cancion of canciones">
+                    <td>
+                        <img [src]="cancion.album.images | noImage" alt="" class="img-thumb">
+                    </td>
+                    <td>{{cancion.album.name}}</td>
+                    <td>{{cancion.name}}</td>
+                    <td>
+                        
+                        <iframe 
+                      
+                        [src]="cancion.id | domseguro" 
+                        width="300" 
+                        height="80" 
+                        frameborder="0" 
+                        allowtransparency="true" 
+                        allow="encrypted-media"></iframe>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
